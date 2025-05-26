@@ -1,0 +1,248 @@
+/* Global Styles */
+:root {
+    --sunflower-yellow: #FFDA03;
+    --cream: #FAF3DD;
+    --warm-orange: #F4A261;
+    --leafy-green: #264653;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Poppins', sans-serif;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    background-color: var(--cream);
+}
+
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+/* Background Styles */
+.sunflower-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(135deg, var(--sunflower-yellow), var(--warm-orange));
+    z-index: -1;
+    overflow: hidden;
+}
+
+.sunflower-bg::before {
+    content: '';
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFDA03"/><circle cx="50" cy="50" r="30" fill="%23264653"/></svg>');
+    background-size: 100px 100px;
+    opacity: 0.1;
+    animation: sway 8s ease-in-out infinite;
+}
+
+.sunflower-bg.evening {
+    background: linear-gradient(135deg, var(--leafy-green), #2A9D8F);
+}
+
+/* Title Styles */
+.title {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    text-align: center;
+    color: var(--leafy-green);
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.1);
+    margin-bottom: 2rem;
+    animation: fadeIn 1.5s ease-out;
+}
+
+/* Letter Styles */
+.letter-container {
+    background: rgba(250, 243, 221, 0.95);
+    border-radius: 20px;
+    padding: 2rem;
+    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+    backdrop-filter: blur(10px);
+    margin: 2rem 0;
+    animation: slideUp 1s ease-out;
+    border: 2px solid var(--warm-orange);
+}
+
+.letter {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--leafy-green);
+    font-family: 'Lato', sans-serif;
+}
+
+.letter p {
+    margin-bottom: 1rem;
+}
+
+/* Button Styles */
+.next-page-btn {
+    display: block;
+    margin: 2rem auto;
+    padding: 1rem 2rem;
+    font-size: 1.2rem;
+    background: var(--sunflower-yellow);
+    color: var(--leafy-green);
+    border: none;
+    border-radius: 50px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    font-family: 'Poppins', sans-serif;
+}
+
+.next-page-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.3);
+    background: var(--warm-orange);
+}
+
+/* Growing Sunflower Animation */
+.growing-sunflower {
+    width: 100px;
+    height: 100px;
+    margin: 2rem auto;
+    background-image: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><circle cx="50" cy="50" r="40" fill="%23FFDA03"/><circle cx="50" cy="50" r="30" fill="%23264653"/></svg>');
+    background-size: contain;
+    animation: grow 2s ease-out infinite;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.growing-sunflower:hover {
+    transform: scale(1.1) rotate(5deg);
+}
+
+/* Name Input Styles */
+.name-input-container {
+    text-align: center;
+    margin: 2rem 0;
+    opacity: 0;
+    animation: fadeIn 1s ease-out forwards;
+    animation-delay: 0.5s;
+}
+
+.name-input {
+    padding: 0.8rem 1.5rem;
+    font-size: 1.1rem;
+    border: 2px solid var(--warm-orange);
+    border-radius: 25px;
+    background: rgba(255, 255, 255, 0.9);
+    color: var(--leafy-green);
+    font-family: 'Poppins', sans-serif;
+    transition: all 0.3s ease;
+}
+
+.name-input:focus {
+    outline: none;
+    box-shadow: 0 0 10px var(--warm-orange);
+}
+
+/* Photo Carousel */
+.photo-carousel {
+    display: flex;
+    overflow-x: auto;
+    padding: 1rem 0;
+    scroll-snap-type: x mandatory;
+    gap: 1rem;
+    margin: 2rem 0;
+}
+
+.photo-frame {
+    flex: 0 0 200px;
+    height: 200px;
+    scroll-snap-align: start;
+    border-radius: 10px;
+    overflow: hidden;
+    position: relative;
+    border: 3px solid var(--sunflower-yellow);
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+}
+
+.photo-frame img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform 0.3s ease;
+}
+
+.photo-frame:hover img {
+    transform: scale(1.1);
+}
+
+/* Animations */
+@keyframes sway {
+    0%, 100% { transform: rotate(-5deg); }
+    50% { transform: rotate(5deg); }
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from {
+        opacity: 0;
+        transform: translateY(50px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes grow {
+    0% { transform: scale(0.8); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(0.8); }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .container {
+        padding: 1rem;
+    }
+
+    .letter {
+        font-size: 1rem;
+    }
+
+    .photo-frame {
+        flex: 0 0 150px;
+        height: 150px;
+    }
+}
+
+@media (max-width: 480px) {
+    .title {
+        font-size: 2rem;
+    }
+
+    .letter-container {
+        padding: 1.5rem;
+    }
+
+    .photo-frame {
+        flex: 0 0 120px;
+        height: 120px;
+    }
+} 
