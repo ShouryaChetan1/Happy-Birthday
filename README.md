@@ -1,4 +1,4 @@
-# Birthday Website for Sanya 🌻
+# Birthday Website 
 
 A beautiful, interactive two-page website created to celebrate Sanya's birthday and express heartfelt emotions.
 
