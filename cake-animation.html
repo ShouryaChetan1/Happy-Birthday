@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Happy Birthday Sanya! 🎂</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            overflow: hidden;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        #animation-container {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+        .cake {
+            position: absolute;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            opacity: 0;
+            transition: opacity 1s ease-in-out;
+        }
+        .cake.visible {
+            opacity: 1;
+        }
+        .cake img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+        }
+        .progress-bar {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 80%;
+            height: 4px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 2px;
+        }
+        .progress {
+            width: 0%;
+            height: 100%;
+            background: #FFD700;
+            border-radius: 2px;
+            transition: width 0.1s linear;
+        }
+    </style>
+</head>
+<body>
+    <div id="animation-container">
+        <div class="cake">
+            <img src="assets/cake-animation.gif" alt="Birthday Cake Animation">
+        </div>
+        <div class="progress-bar">
+            <div class="progress"></div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const cake = document.querySelector('.cake');
+            const progress = document.querySelector('.progress');
+            const animationDuration = 10000; // 10 seconds
+            let startTime = Date.now();
+
+            // Show cake
+            setTimeout(() => {
+                cake.classList.add('visible');
+            }, 500);
+
+            // Update progress bar
+            function updateProgress() {
+                const elapsed = Date.now() - startTime;
+                const percentage = Math.min((elapsed / animationDuration) * 100, 100);
+                progress.style.width = percentage + '%';
+
+                if (percentage < 100) {
+                    requestAnimationFrame(updateProgress);
+                } else {
+                    // Animation complete
+                    setTimeout(() => {
+                        localStorage.setItem('animationShown', 'true');
+                        window.location.replace('index.html');
+                    }, 500);
+                }
+            }
+
+            updateProgress();
+        });
+    </script>
+</body>
+</html> 
